@@ -19,13 +19,21 @@ jobs:
         with:
           node-version: '18'
           cache: 'npm'
-          cache-dependency-path: 'Quizzy/package-lock.json'
+          cache-dependency-path: 'Quizzy/package.json'
           
-      - name: Install and test
+      - name: Install dependencies
         run: |
           cd Quizzy
-          npm ci
+          npm install
+          
+      - name: Run tests
+        run: |
+          cd Quizzy
           npm test -- --watchAll=false
+          
+      - name: Build application
+        run: |
+          cd Quizzy
           npm run build
           
       - name: Deploy to Vercel
