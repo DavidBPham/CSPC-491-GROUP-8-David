@@ -4,7 +4,6 @@ import axios from 'axios';
 import Header from './Header';
 import { CheckCircle, XCircle, ArrowRight, ArrowLeft } from 'lucide-react';
 
-
 const TakeQuiz = ({ user, setUser }) => {
   const { quizId } = useParams();
   const navigate = useNavigate();
@@ -18,13 +17,10 @@ const TakeQuiz = ({ user, setUser }) => {
 
   const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
 
-  useEffect(() => {
-    fetchQuiz();
-  },[fetchQuiz]));
-
+  // Define fetchQuiz with useCallback FIRST
   const fetchQuiz = useCallback(async () => {
     setLoading(true);
-    setError(''), [quizId, API_URL, navigate]);
+    setError('');
 
     try {
       const token = localStorage.getItem('token');
@@ -51,7 +47,12 @@ const TakeQuiz = ({ user, setUser }) => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [quizId, API_URL, navigate]);
+
+  // THEN use it in useEffect
+  useEffect(() => {
+    fetchQuiz();
+  }, [fetchQuiz]);
 
   const handleSelectAnswer = (choiceId) => {
     setSelectedAnswers({

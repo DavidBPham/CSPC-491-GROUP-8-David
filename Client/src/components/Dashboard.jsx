@@ -4,7 +4,6 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Header from './Header';
 
-
 const Dashboard = ({ user, setUser }) => {
   const [quizzes, setQuizzes] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -13,11 +12,7 @@ const Dashboard = ({ user, setUser }) => {
   
   const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
 
-  // Fetch user's quizzes when component mounts
-  useEffect(() => {
-    fetchQuizzes();
-  }, [fetchQuizzes]);
-
+  // Define fetchQuizzes with useCallback FIRST
   const fetchQuizzes = useCallback(async () => {
     setLoading(true);
     setError('');
@@ -52,6 +47,11 @@ const Dashboard = ({ user, setUser }) => {
     }
   }, [API_URL, navigate]);
 
+  // THEN use it in useEffect
+  useEffect(() => {
+    fetchQuizzes();
+  }, [fetchQuizzes]);
+
   const handleDeleteQuiz = async (quizId) => {
     if (!window.confirm('Are you sure you want to delete this quiz?')) {
       return;
@@ -78,7 +78,6 @@ const Dashboard = ({ user, setUser }) => {
   };
 
   const handleTakeQuiz = (quizId) => {
-    // Navigate to quiz taking view (you'll need to implement this)
     navigate(`/quiz/${quizId}`);
   };
 
@@ -237,6 +236,3 @@ const Dashboard = ({ user, setUser }) => {
 };
 
 export default Dashboard;
-
-
-
