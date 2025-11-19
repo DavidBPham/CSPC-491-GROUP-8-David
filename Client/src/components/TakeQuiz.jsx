@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Header from './Header';
 import { CheckCircle, XCircle, ArrowRight, ArrowLeft } from 'lucide-react';
-import React, { useState, useEffect, useCallback } from 'react';
+
 
 const TakeQuiz = ({ user, setUser }) => {
   const { quizId } = useParams();
