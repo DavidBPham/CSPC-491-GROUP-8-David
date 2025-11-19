@@ -3,6 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Header from './Header';
 import { CheckCircle, XCircle, ArrowRight, ArrowLeft } from 'lucide-react';
+import React, { useState, useEffect, useCallback } from 'react';
 
 const TakeQuiz = ({ user, setUser }) => {
   const { quizId } = useParams();
@@ -19,11 +20,11 @@ const TakeQuiz = ({ user, setUser }) => {
 
   useEffect(() => {
     fetchQuiz();
-  }, [quizId]);
+  },[fetchQuiz]));
 
-  const fetchQuiz = async () => {
+  const fetchQuiz = useCallback(async () => {
     setLoading(true);
-    setError('');
+    setError(''), [quizId, API_URL, navigate]);
 
     try {
       const token = localStorage.getItem('token');
