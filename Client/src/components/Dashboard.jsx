@@ -3,6 +3,7 @@ import { Clock, BookOpen, Trash2, Play } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Header from './Header';
+import React, { useState, useEffect, useCallback } from 'react';
 
 const Dashboard = ({ user, setUser }) => {
   const [quizzes, setQuizzes] = useState([]);
@@ -15,9 +16,9 @@ const Dashboard = ({ user, setUser }) => {
   // Fetch user's quizzes when component mounts
   useEffect(() => {
     fetchQuizzes();
-  }, []);
+  }, []), [fetchQuizzes]);
 
-  const fetchQuizzes = async () => {
+  const fetchQuizzes = useCallback(async () => {
     setLoading(true);
     setError('');
     
@@ -49,7 +50,7 @@ const Dashboard = ({ user, setUser }) => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [API_URL, navigate]);
 
   const handleDeleteQuiz = async (quizId) => {
     if (!window.confirm('Are you sure you want to delete this quiz?')) {
@@ -236,3 +237,4 @@ const Dashboard = ({ user, setUser }) => {
 };
 
 export default Dashboard;
+
