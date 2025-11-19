@@ -16,7 +16,7 @@ const Dashboard = ({ user, setUser }) => {
   // Fetch user's quizzes when component mounts
   useEffect(() => {
     fetchQuizzes();
-  }, []), [fetchQuizzes]);
+  }, [fetchQuizzes]);
 
   const fetchQuizzes = useCallback(async () => {
     setLoading(true);
@@ -237,5 +237,6 @@ const Dashboard = ({ user, setUser }) => {
 };
 
 export default Dashboard;
+
 
 
