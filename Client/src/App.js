@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route, Link, Navigate } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import './styles/QuizzyApp.css';
 import AuthForm from './components/AuthForm';
 import Dashboard from './components/Dashboard';
@@ -38,18 +38,6 @@ const App = () => {
       </div>
     );
   }
-
-  const NavButtons = () => (
-    <div className="nav-buttons">
-      <Link to="/" className="nav-button">Landing</Link>
-      <Link to="/signup" className="nav-button">Sign Up</Link>
-      <Link to="/login" className="nav-button">Login</Link>
-      <Link to="/dashboard" className="nav-button">Dashboard</Link>
-      <Link to="/generate" className="nav-button">Generate</Link>
-      <Link to="/quiz-mobile" className="nav-button">Quiz Mobile</Link>
-      <Link to="/quiz-desktop" className="nav-button">Quiz Desktop</Link>
-    </div>
-  );
 
   return (
     <Router>
@@ -105,8 +93,6 @@ const App = () => {
             }
           />
         </Routes>
-        {/* Optional: Show nav buttons in development */}
-        {/* <NavButtons /> */}
       </div>
     </Router>
   );
