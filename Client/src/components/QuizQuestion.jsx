@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { User, X } from 'lucide-react';
+import { X } from 'lucide-react';
 import Header from './Header';
 
 const QuizQuestion = ({ user, setUser, isMobile = true, questionText, options, correctAnswer }) => {
