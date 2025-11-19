@@ -20,7 +20,11 @@
     "test:coverage": "react-scripts test --coverage --watchAll=false",
     "test:ci": "CI=true react-scripts test --coverage",
     "predeploy": "npm run test:ci",
-    "deploy": "vercel --prod"
+    "deploy": "vercel --prod",
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": [
@@ -48,3 +52,4 @@
     "jest-environment-jsdom": "^27.5.1"
   }
 }
+
